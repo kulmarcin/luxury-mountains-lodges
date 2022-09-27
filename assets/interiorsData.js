@@ -19,6 +19,27 @@ const interiorsData = [
     location: 'Somewhere, Norway',
     image: './images/interiors/interior3.jpg',
     alt: 'interior3'
+  },
+  {
+    id: 4,
+    title: 'Simple Lodge',
+    location: 'Somewhere, Sweden',
+    image: './images/interiors/interior4.jpg',
+    alt: 'interior3'
+  },
+  {
+    id: 5,
+    title: 'Amazing Lodge',
+    location: 'Somewhere, Sweden',
+    image: './images/interiors/interior5.jpg',
+    alt: 'interior3'
+  },
+  {
+    id: 6,
+    title: 'Outstanding Lodge',
+    location: 'Somewhere, Sweden',
+    image: './images/interiors/interior6.jpeg',
+    alt: 'interior3'
   }
 ];
 
