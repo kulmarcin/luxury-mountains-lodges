@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import theme from '../theme';
+import devices from '../mediaQuery';
 
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
@@ -16,6 +17,10 @@ export const SliderContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
+  @media ${devices.tablet} {
+    height: 500px;
+  }
 `;
 
 export const MainText = styled.p`
@@ -23,6 +28,10 @@ export const MainText = styled.p`
   font-family: ${theme.fonts.light};
   margin-top: 50px;
   text-align: center;
+
+  @media ${devices.tablet} {
+    font-size: ${theme.fontSizes.xl};
+  }
 `;
 
 export const Image = styled.img`
@@ -34,18 +43,32 @@ export const Image = styled.img`
 
   transition: all 2s;
   transform: ${({ index }) => `translateX(-${index * 240}px)`};
+
+  @media ${devices.tablet} {
+    min-width: 500px;
+    height: 500px;
+    transform: ${({ index }) => `translateX(-${index * 380}px)`};
+  }
 `;
 
 export const ButtonLeft = styled(MdKeyboardArrowLeft)`
   position: absolute;
   top: 125px;
   left: 10px;
+
+  @media ${devices.tablet} {
+    top: 250px;
+  }
 `;
 
 export const ButtonRight = styled(MdKeyboardArrowRight)`
   position: absolute;
   top: 125px;
   right: 10px;
+
+  @media ${devices.tablet} {
+    top: 250px;
+  }
 `;
 
 export const Description = styled.p`
@@ -54,4 +77,9 @@ export const Description = styled.p`
   margin-top: 30px;
   text-align: center;
   padding: 0 20px;
+
+  @media ${devices.tablet} {
+  font-size: ${theme.fontSizes.sm};
+
+  }
 `;

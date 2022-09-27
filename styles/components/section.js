@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import theme from '../theme';
 import mixins from '../mixins';
+import devices from '../mediaQuery';
 
 export const TextContainer = styled.div`
   padding: ${theme.spacing.md};
@@ -9,12 +10,20 @@ export const TextContainer = styled.div`
 export const MainText = styled.p`
   font-size: ${theme.fontSizes.lg};
   font-family: ${theme.fonts.light};
+
+  @media ${devices.tablet} {
+    font-size: ${theme.fontSizes.xl}
+  }
 `;
 
 export const Description = styled.p`
   font-size: ${theme.fontSizes.sm};
   font-family: ${theme.fonts.light};
   margin-top: 30px;
+
+  @media ${devices.tablet} {
+    font-size: ${theme.fontSizes.md}
+  }
 `;
 
 export const Button = styled.div`
@@ -26,6 +35,12 @@ export const Button = styled.div`
   color: ${theme.colors.brown};
 
   margin-top: 20px;
+
+  @media ${devices.tablet} {
+    width: 150px;
+    height: 75px;
+    font-size: ${theme.fontSizes.md};
+  }
 `;
 
 export const ImageContainer = styled.div`
@@ -40,4 +55,9 @@ export const Image = styled.img`
   object-fit: cover;
   object-position: left;
   margin-top: 20px;
+
+  @media ${devices.tablet} {
+    width: 750px;
+    height: 750px;
+  }
 `;
