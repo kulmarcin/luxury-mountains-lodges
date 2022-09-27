@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import theme from '../theme';
+import devices from '../mediaQuery';
 
 export const Container = styled.div`
   padding: ${theme.spacing.base};
@@ -9,12 +10,30 @@ export const Container = styled.div`
 export const MainText = styled.p`
   font-size: ${theme.fontSizes.lg};
   font-family: ${theme.fonts.light};
+
+  @media ${devices.tablet} {
+    font-size: ${theme.fontSizes.xl};
+  }
 `;
 
 export const Description = styled.p`
   font-size: ${theme.fontSizes.sm};
   font-family: ${theme.fonts.light};
   margin-top: 30px;
+
+  @media ${devices.tablet} {
+    font-size: ${theme.fontSizes.md};
+  }
+`;
+
+export const InteriorsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media ${devices.tablet} {
+    justify-content: space-around;
+  }
 `;
 
 export const ImageContainer = styled.div`
@@ -34,7 +53,16 @@ export const Location = styled.p`
   font-size: ${theme.fontSizes.base};
   font-family: ${theme.fonts.light};
   margin-top: 10px;
+
+  @media ${devices.tablet} {
+    font-size: ${theme.fontSizes.md};
+  }
 `;
+
 export const Title = styled.p`
   font-size: ${theme.fontSizes.md};
+
+  @media ${devices.tablet} {
+    font-size: ${theme.fontSizes.lg}
+  }
 `;

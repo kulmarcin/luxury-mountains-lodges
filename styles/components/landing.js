@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import mixins from '../mixins';
 import theme from '../theme';
+import devices from '../mediaQuery'
 
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
@@ -29,6 +30,10 @@ export const Title = styled.p`
   font-size: ${theme.fontSizes.xl};
   color: white;
   font-family: ${theme.fonts.bold};
+
+  @media ${devices.tablet} {
+    font-size:  ${theme.fontSizes.xxl}
+  }
 `;
 
 export const StyledArrowDown = styled(MdKeyboardArrowDown)`
