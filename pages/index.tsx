@@ -31,6 +31,7 @@ const Home: NextPage = () => {
           image={el.image}
           align={el.align}
           isStory={el.isStory}
+          order={el.order}
         />
       ))}
       <Slider />
