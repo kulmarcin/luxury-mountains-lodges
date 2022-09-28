@@ -7,7 +7,8 @@ const sectionData = [
       'Our company provides restorative sanctuaries and encounters in the mountains that guests won’t find anywhere else. Sought-after locations, intuitive attention to detail and the utmost privacy underpin every stay. ',
     image: './images/section1.jpg',
     align: 'flex-end',
-    isStory: true
+    isStory: true,
+    order: 1
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ const sectionData = [
       'Awe-inspiring landscapes form the perfect backdrop for the stillness and privacy they seek with endless opportunities to truly slow down.',
     image: './images/section2.jpg',
     align: 'flex-start',
-    isStory: false
+    isStory: false,
+    order: -1
   },
   {
     id: 3,
@@ -26,7 +28,8 @@ const sectionData = [
       'With limited guest and vehicle numbers, exceptionally consistent game viewing and warm-hearted hospitality, guests leave feeling transformed – with body and soul soothed by meaningful connections with loved ones, themselves and nature.',
     image: './images/section3.jpg',
     align: 'flex-end',
-    isStory: false
+    isStory: false,
+    order: 1
   }
 ];
 

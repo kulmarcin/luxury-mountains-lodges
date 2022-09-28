@@ -10,6 +10,7 @@ export const Container = styled.div`
 export const MainText = styled.p`
   font-size: ${theme.fontSizes.lg};
   font-family: ${theme.fonts.light};
+  text-align: center;
 
   @media ${devices.tablet} {
     font-size: ${theme.fontSizes.xl};
@@ -23,6 +24,10 @@ export const Description = styled.p`
 
   @media ${devices.tablet} {
     font-size: ${theme.fontSizes.md};
+  }
+
+  @media ${devices.desktop} {
+    font-size: ${theme.fontSizes.sm};
   }
 `;
 
@@ -63,6 +68,6 @@ export const Title = styled.p`
   font-size: ${theme.fontSizes.md};
 
   @media ${devices.tablet} {
-    font-size: ${theme.fontSizes.lg}
+    font-size: ${theme.fontSizes.lg};
   }
 `;

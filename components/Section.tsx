@@ -6,7 +6,8 @@ import {
   Button,
   TextContainer,
   Image,
-  ImageContainer
+  ImageContainer,
+  Container
 } from '../styles/components/section';
 
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
   image: string;
   align: string;
   isStory?: boolean;
+  order: number;
 }
 
 export default function Section({
@@ -22,10 +24,11 @@ export default function Section({
   description,
   image,
   align,
-  isStory
+  isStory,
+  order
 }: Props) {
   return (
-    <>
+    <Container>
       <TextContainer>
         <MainText>{mainText}</MainText>
         <Description>{description}</Description>
@@ -33,9 +36,9 @@ export default function Section({
         {isStory && <Button>Our Story</Button>}
       </TextContainer>
 
-      <ImageContainer align={align}>
+      <ImageContainer align={align} order={order}>
         <Image src={image} alt="section1 image" />
       </ImageContainer>
-    </>
+    </Container>
   );
 }

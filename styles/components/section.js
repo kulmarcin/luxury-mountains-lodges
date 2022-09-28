@@ -3,6 +3,15 @@ import theme from '../theme';
 import mixins from '../mixins';
 import devices from '../mediaQuery';
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media ${devices.desktop} {
+    flex-direction: row;
+  }
+`;
+
 export const TextContainer = styled.div`
   padding: ${theme.spacing.md};
 `;
@@ -12,7 +21,7 @@ export const MainText = styled.p`
   font-family: ${theme.fonts.light};
 
   @media ${devices.tablet} {
-    font-size: ${theme.fontSizes.xl}
+    font-size: ${theme.fontSizes.xl};
   }
 `;
 
@@ -22,7 +31,11 @@ export const Description = styled.p`
   margin-top: 30px;
 
   @media ${devices.tablet} {
-    font-size: ${theme.fontSizes.md}
+    font-size: ${theme.fontSizes.md};
+  }
+
+  @media ${devices.desktop} {
+    font-size: ${theme.fontSizes.sm};
   }
 `;
 
@@ -33,6 +46,8 @@ export const Button = styled.div`
   border: 1px solid ${theme.colors.brown};
   border-radius: 15px;
   color: ${theme.colors.brown};
+  cursor: pointer;
+  transition: all 0.25s;
 
   margin-top: 20px;
 
@@ -41,12 +56,21 @@ export const Button = styled.div`
     height: 75px;
     font-size: ${theme.fontSizes.md};
   }
+
+  &:hover {
+    color: white;
+    background-color: ${theme.colors.brown};
+  }
 `;
 
 export const ImageContainer = styled.div`
   display: flex;
   justify-content: ${({ align }) => align};
   margin-bottom: ${({ isMargin }) => (isMargin ? '50px' : 0)};
+
+  @media ${devices.desktop} {
+    order: ${({ order }) => order};
+  }
 `;
 
 export const Image = styled.img`

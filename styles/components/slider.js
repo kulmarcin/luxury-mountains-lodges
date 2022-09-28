@@ -21,6 +21,14 @@ export const SliderContainer = styled.div`
   @media ${devices.tablet} {
     height: 500px;
   }
+
+  @media ${devices.desktop} {
+    padding-left: 100px;
+  }
+
+  @media ${devices.hugeDesktop} {
+    padding-left: 250px;
+  }
 `;
 
 export const MainText = styled.p`
@@ -41,13 +49,26 @@ export const Image = styled.img`
   object-fit: cover;
   margin-right: 20px;
 
-  transition: all 2s;
+  transition: all 1s ease-in-out;
   transform: ${({ index }) => `translateX(-${index * 240}px)`};
 
   @media ${devices.tablet} {
     min-width: 500px;
+    max-width: 500px;
     height: 500px;
     transform: ${({ index }) => `translateX(-${index * 380}px)`};
+  }
+
+  @media ${devices.desktop} {
+    min-width: 900px;
+    max-width: 900px;
+    transform: ${({ index }) => `translateX(-${index * 890}px)`};
+  }
+
+  @media ${devices.hugeDesktop} {
+    min-width: 900px;
+    max-width: 900px;
+    transform: ${({ index }) => `translateX(-${index * 950}px)`};
   }
 `;
 
@@ -55,6 +76,7 @@ export const ButtonLeft = styled(MdKeyboardArrowLeft)`
   position: absolute;
   top: 125px;
   left: 10px;
+  cursor: pointer;
 
   @media ${devices.tablet} {
     top: 250px;
@@ -65,9 +87,18 @@ export const ButtonRight = styled(MdKeyboardArrowRight)`
   position: absolute;
   top: 125px;
   right: 10px;
+  cursor: pointer;
 
   @media ${devices.tablet} {
     top: 250px;
+  }
+
+  @media ${devices.desktop} {
+    right: 110px;
+  }
+
+  @media ${devices.hugeDesktop} {
+    right: 260px;
   }
 `;
 
@@ -79,7 +110,6 @@ export const Description = styled.p`
   padding: 0 20px;
 
   @media ${devices.tablet} {
-  font-size: ${theme.fontSizes.sm};
-
+    font-size: ${theme.fontSizes.sm};
   }
 `;
