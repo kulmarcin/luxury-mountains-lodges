@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import GlobalStyle from '../styles/globalStyle';
 
 import sectionData from '../assets/sectionData';
 
@@ -12,7 +11,6 @@ import Interiors from '../components/Interiors';
 const Home: NextPage = () => {
   return (
     <div>
-      <GlobalStyle />
       <Head>
         <title>Luxury Mountain Lodges</title>
         <meta name="description" content="Luxury Mountain Lodges" />

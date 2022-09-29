@@ -1,7 +1,16 @@
 import type { AppProps } from 'next/app';
 
+import FixedMenu from '../components/FixedMenu';
+import GlobalStyle from '../styles/globalStyle';
+
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <FixedMenu />
+      <GlobalStyle />
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp;
