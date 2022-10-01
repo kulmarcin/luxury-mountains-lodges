@@ -31,16 +31,19 @@ import { BsChevronCompactRight, BsChevronCompactLeft } from 'react-icons/bs';
 import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 
 import interiorsData from '../assets/interiorsData';
+import { NextRouter } from 'next/router';
 
-export default function FixedMenu() {
+interface Props {
+  router: NextRouter
+}
+
+export default function FixedMenu({router}: Props) {
   const [isMenu, setIsMenu] = useState(false);
   const [currentMenu, setCurrentMenu] = useState('main');
 
   const mainMenu = [
     { name: 'Lodges', method: () => setCurrentMenu('lodges') },
-    { name: 'Private Villa Collection' },
     { name: 'Conservation' },
-    { name: 'Wildlife' },
     { name: 'About' }
   ];
   const lowerLeftMenu = [
@@ -86,6 +89,11 @@ export default function FixedMenu() {
     }
   }, [isMenu]);
 
+  const handleLodgeElement = (id: number) =>{
+    setIsMenu(false);
+    router.push(`/interior/${id}`)
+  }
+
   return (
     <>
       <Container>
@@ -102,7 +110,7 @@ export default function FixedMenu() {
           </ButtonContainer>
         )}
       </Container>
-      <Menu className={isMenu && 'active'}>
+      <Menu className={isMenu ? 'active' : ''}>
         {currentMenu === 'main' && (
           <>
             <Main>
@@ -147,7 +155,7 @@ export default function FixedMenu() {
 
             <LodgesContainer>
               {interiorsData.map((el, idx) => (
-                <LodgeElement key={idx}>
+                <LodgeElement key={idx} onClick={() => handleLodgeElement(el.id)}>
                   {el.title} <BsChevronCompactRight size={40} />
                 </LodgeElement>
               ))}

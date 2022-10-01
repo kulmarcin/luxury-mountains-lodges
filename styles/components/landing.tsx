@@ -19,7 +19,7 @@ const jumping = keyframes`
 export const Landing = styled.div`
   width: 100vw;
   height: 100vh;
-  background: url('./images/mainPage.jpg');
+  background: url('/images/mainPage.jpg');
   background-size: cover;
   background-position: center;
 

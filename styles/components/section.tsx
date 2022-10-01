@@ -3,6 +3,11 @@ import theme from '../theme';
 import mixins from '../mixins';
 import devices from '../mediaQuery';
 
+interface ImageContainerProps {
+  align: string;
+  order: number;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -63,10 +68,10 @@ export const Button = styled.div`
   }
 `;
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.div<ImageContainerProps>`
   display: flex;
   justify-content: ${({ align }) => align};
-  margin-bottom: ${({ isMargin }) => (isMargin ? '50px' : 0)};
+  margin-bottom: 0;
 
   @media ${devices.desktop} {
     order: ${({ order }) => order};

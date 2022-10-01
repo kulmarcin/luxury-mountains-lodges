@@ -7,8 +7,12 @@ import { Landing, StyledArrowDown, Title } from '../styles/components/landing';
 import Section from '../components/Section';
 import Slider from '../components/Slider';
 import Interiors from '../components/Interiors';
+import FixedMenu from '../components/FixedMenu';
+import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
+  const router = useRouter()
+
   return (
     <div>
       <Head>
@@ -16,6 +20,9 @@ const Home: NextPage = () => {
         <meta name="description" content="Luxury Mountain Lodges" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+
+      <FixedMenu router={router}/>
 
       <Landing>
         <Title>Place of Miracles</Title>

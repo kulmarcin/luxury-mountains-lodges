@@ -5,6 +5,10 @@ import devices from '../mediaQuery';
 
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
+interface ImageProps {
+  index: number
+}
+
 export const SliderContainer = styled.div`
   width: 100%;
   height: 300px;
@@ -42,7 +46,7 @@ export const MainText = styled.p`
   }
 `;
 
-export const Image = styled.img`
+export const Image = styled.img<ImageProps>`
   min-width: 270px;
   height: 270px;
   border-radius: 25px;
@@ -77,6 +81,9 @@ export const ButtonLeft = styled(MdKeyboardArrowLeft)`
   top: 125px;
   left: 10px;
   cursor: pointer;
+  border-radius: 50%;
+  background-color: ${theme.colors.beigeLowerOpacity};
+  border: 1px solid ${theme.colors.brown};
 
   @media ${devices.tablet} {
     top: 250px;
@@ -88,6 +95,9 @@ export const ButtonRight = styled(MdKeyboardArrowRight)`
   top: 125px;
   right: 10px;
   cursor: pointer;
+  border-radius: 50%;
+  background-color: ${theme.colors.beigeLowerOpacity};
+  border: 1px solid ${theme.colors.brown};
 
   @media ${devices.tablet} {
     top: 250px;

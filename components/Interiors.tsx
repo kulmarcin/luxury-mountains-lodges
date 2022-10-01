@@ -12,8 +12,10 @@ import {
 } from '../styles/components/interiors';
 
 import interiorsData from '../assets/interiorsData';
+import { useRouter } from 'next/router';
 
 export default function Interiors() {
+  const router = useRouter()
   return (
     <Container>
       <MainText>A soul-restoring experience. Find your sanctuary.</MainText>
@@ -26,7 +28,7 @@ export default function Interiors() {
 
       <InteriorsContainer>
         {interiorsData.map(el => (
-          <ImageContainer key={el.id}>
+          <ImageContainer key={el.id} onClick={() => router.push(`/interior/${el.id}`)}>
             <Image src={el.image} alt={el.alt} />
             <Location>{el.location}</Location>
             <Title>{el.title}</Title>

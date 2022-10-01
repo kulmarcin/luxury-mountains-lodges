@@ -35,6 +35,7 @@ export const InteriorsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  cursor: pointer;
 
   @media ${devices.tablet} {
     justify-content: space-around;
