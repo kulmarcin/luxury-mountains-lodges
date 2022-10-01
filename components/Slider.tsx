@@ -37,10 +37,10 @@ export default function Slider() {
         ))}
 
         {index !== 0 && (
-          <ButtonLeft size={35} color="white" onClick={indexDown} />
+          <ButtonLeft size={35} color="black" onClick={indexDown} />
         )}
         {index !== 2 && (
-          <ButtonRight size={35} color="white" onClick={indexUp} />
+          <ButtonRight size={35} color="black" onClick={indexUp} />
         )}
       </SliderContainer>
 

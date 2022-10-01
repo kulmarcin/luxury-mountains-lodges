@@ -87,7 +87,7 @@ export const MainElement = styled.div`
 
 export const LowerMenu = styled.div`
   display: flex;
-  margin-top: 80px;
+  margin-top: 40px;
   padding: 0 20px;
   justify-content: space-between;
 
@@ -155,13 +155,13 @@ export const LowerRightElement = styled.div`
 `;
 
 export const Contact = styled.div`
-  margin-top: 80px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
 
   @media ${devices.desktop} {
     position: absolute;
-    bottom: 40px;
+    bottom: 20px;
   }
 `;
 
@@ -173,7 +173,7 @@ export const EmailTel = styled.div`
 export const Socials = styled.div`
   display: flex;
   align-items: center;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   margin-top: 40px;
 
   @media ${devices.desktop} {
