@@ -1,0 +1,49 @@
+import styled from 'styled-components';
+import devices from '../mediaQuery';
+import mixins from '../mixins';
+import theme from '../theme';
+
+export const Back = styled.div`
+  position: fixed;
+  top: 10px;
+  left: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: black;
+  padding: 5px 5px 5px 0;
+  background-color: ${theme.colors.beigeLowerOpacity};
+  font-family: ${theme.fonts.bold};
+  border: 1px solid ${theme.colors.brown};
+  cursor: pointer;
+`;
+
+export const Landing = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: url('/images/conservation/landing.jpg');
+  background-size: cover;
+  background-position: 0% 70%;
+
+  ${mixins.flexCenter}
+`;
+
+export const Title = styled.p`
+  font-size: 60px;
+  color: white;
+  font-family: ${theme.fonts.bold};
+`;
+
+export const Image = styled.img`
+  width: 370px;
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
+  margin-top: 20px;
+
+  @media ${devices.tablet} {
+    width: 750px;
+    height: 750px;
+  }
+`;

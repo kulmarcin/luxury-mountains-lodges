@@ -41,15 +41,15 @@ export default function FixedMenu({ router }: Props) {
   const [isMenu, setIsMenu] = useState(false);
   const [currentMenu, setCurrentMenu] = useState('main');
 
-  const handleAbout = () => {
+  const handleRouter = (value: string) => {
     setIsMenu(false);
-    router.push(`/about`);
+    router.push(`/${value}`);
   };
 
   const mainMenu = [
     { name: 'Lodges', method: () => setCurrentMenu('lodges') },
-    { name: 'Conservation' },
-    { name: 'About', method: () => handleAbout() }
+    { name: 'Conservation', method: () => handleRouter('conservation') },
+    { name: 'About', method: () => handleRouter('about') }
   ];
   const lowerLeftMenu = [
     'Photos & Videos',
