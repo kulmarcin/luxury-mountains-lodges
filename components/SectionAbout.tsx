@@ -16,19 +16,19 @@ interface Props {
   description: string;
   image: string;
   align: string;
-  isStory?: boolean;
+  isButton: boolean;
   order: number;
   router: NextRouter
 }
 
-export default function Section({
+export default function SectionAbout({
   mainText,
   description,
   image,
   align,
-  isStory,
   order,
-  router
+  router,
+  isButton
 }: Props) {
   return (
     <Container>
@@ -36,11 +36,11 @@ export default function Section({
         <MainText>{mainText}</MainText>
         <Description>{description}</Description>
 
-        {isStory && <Button onClick={() => router.push('/about')}>Our Story</Button>}
+        {isButton && <Button onClick={() => router.push('/interior')}>Our Lodges</Button>}
       </TextContainer>
 
       <ImageContainer align={align} order={order}>
-        <Image src={image} alt="section1 image" />
+        <Image src={image} alt="section about image" />
       </ImageContainer>
     </Container>
   );

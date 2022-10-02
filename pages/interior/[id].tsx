@@ -48,6 +48,7 @@ import {
   BsStarHalf,
   BsStarFill
 } from 'react-icons/bs';
+import Head from 'next/head';
 
 interface Interior {
   id: number;
@@ -185,6 +186,11 @@ const InteriorPage: NextPage = () => {
 
   return (
     <Container>
+      <Head>
+        <title>{interior.title}</title>
+        <meta name="description" content={`${interior.description}`} />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Back onClick={() => router.push('/')}>
         <BsChevronCompactLeft />
         Back
