@@ -34,17 +34,22 @@ import interiorsData from '../assets/interiorsData';
 import { NextRouter } from 'next/router';
 
 interface Props {
-  router: NextRouter
+  router: NextRouter;
 }
 
-export default function FixedMenu({router}: Props) {
+export default function FixedMenu({ router }: Props) {
   const [isMenu, setIsMenu] = useState(false);
   const [currentMenu, setCurrentMenu] = useState('main');
+
+  const handleAbout = () => {
+    setIsMenu(false);
+    router.push(`/about`);
+  };
 
   const mainMenu = [
     { name: 'Lodges', method: () => setCurrentMenu('lodges') },
     { name: 'Conservation' },
-    { name: 'About' }
+    { name: 'About', method: () => handleAbout() }
   ];
   const lowerLeftMenu = [
     'Photos & Videos',
@@ -89,10 +94,10 @@ export default function FixedMenu({router}: Props) {
     }
   }, [isMenu]);
 
-  const handleLodgeElement = (id: number) =>{
+  const handleLodgeElement = (id: number) => {
     setIsMenu(false);
-    router.push(`/interior/${id}`)
-  }
+    router.push(`/interior/${id}`);
+  };
 
   return (
     <>
@@ -155,7 +160,10 @@ export default function FixedMenu({router}: Props) {
 
             <LodgesContainer>
               {interiorsData.map((el, idx) => (
-                <LodgeElement key={idx} onClick={() => handleLodgeElement(el.id)}>
+                <LodgeElement
+                  key={idx}
+                  onClick={() => handleLodgeElement(el.id)}
+                >
                   {el.title} <BsChevronCompactRight size={40} />
                 </LodgeElement>
               ))}
