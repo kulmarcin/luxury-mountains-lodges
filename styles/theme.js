@@ -1,8 +1,10 @@
 const theme = {
   colors: {
     beige: `rgb(243, 241, 236)`,
-    brown: `rgb(194, 148, 122)`,
-    beigeLowerOpacity: 'rgba(243, 241, 236, 0.7)'
+    beigeDark: `rgb(216,216,216)`,
+    beigeLowerOpacity: 'rgba(243, 241, 236, 0.7)',
+    brown: `#c2947a`,
+    brownDark: `rgb(171, 164, 142)`
   },
 
   fonts: {

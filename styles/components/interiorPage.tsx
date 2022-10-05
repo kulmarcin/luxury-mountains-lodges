@@ -187,4 +187,5 @@ export const ReserveButton = styled.div`
   font-family: ${theme.fonts.bold};
   color: white;
   margin-bottom: 20px;
+  cursor: pointer;
 `;
