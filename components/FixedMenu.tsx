@@ -40,6 +40,7 @@ interface Props {
 export default function FixedMenu({ router }: Props) {
   const [isMenu, setIsMenu] = useState(false);
   const [currentMenu, setCurrentMenu] = useState('main');
+  const [isPastLanding, setIsPastLanding] = useState(false)
 
   const handleRouter = (value: string) => {
     setIsMenu(false);
@@ -88,11 +89,29 @@ export default function FixedMenu({ router }: Props) {
 
   useEffect(() => {
     if (isMenu) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflowY = 'hidden';
     } else {
-      document.body.style.overflow = 'scroll';
+      document.body.style.overflowY = 'scroll';
     }
   }, [isMenu]);
+
+  useEffect(() => {
+    const viewportHeight = window.innerHeight
+
+    const checkScrollY = () => {
+      if(window.scrollY > viewportHeight) {
+        setIsPastLanding(true)
+      } else {
+        setIsPastLanding(false)
+      }
+    };
+
+    window.addEventListener('scroll', checkScrollY);
+
+    return () => {
+      window.removeEventListener('scroll', checkScrollY);
+    };
+  }, []);
 
   const handleLodgeElement = (id: number) => {
     setIsMenu(false);
@@ -101,7 +120,7 @@ export default function FixedMenu({ router }: Props) {
 
   return (
     <>
-      <Container>
+      <Container isPastLanding={isPastLanding}>
         LOGO
         {isMenu ? (
           <ButtonContainer onClick={() => setIsMenu(!isMenu)}>

@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -49,8 +49,9 @@ import {
   BsStarFill
 } from 'react-icons/bs';
 import Head from 'next/head';
+import Reserve from '../../components/Reserve';
 
-interface Interior {
+export interface Interior {
   id: number;
   title: string;
   location: string;
@@ -73,11 +74,18 @@ const InteriorPage: NextPage = () => {
   }
 
   const [multiplier, setMultiplier] = useState(1);
+  const [currentAccomodationType, setCurrentAccomodationType] =
+    useState('Simple');
   const [guestsNumber, setGuestsNumber] = useState(1);
   const [startDate, setStartDate] = useState<null | Date>(new Date());
   const [endDate, setEndDate] = useState<null | Date>(null);
   const [totalDays, setTotalDays] = useState(0);
   const [currentPrice, setCurrentPrice] = useState<null | string>(null);
+  const [currentScreen, setCurrentScreen] = useState('interior');
+  const [formIsSent, setIsSent] = useState(false);
+
+  const ButtonRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+
 
   useEffect(() => {
     if (!endDate) setCurrentPrice(null);
@@ -93,6 +101,31 @@ const InteriorPage: NextPage = () => {
       );
     }
   }, [startDate, endDate, guestsNumber, multiplier, totalDays, interior]);
+
+  useEffect(() => {
+    switch (multiplier) {
+      case 1:
+        setCurrentAccomodationType('Simple');
+        break;
+      case 1.5:
+        setCurrentAccomodationType('Regular');
+        break;
+      case 2:
+        setCurrentAccomodationType('Luxury');
+        break;
+    }
+  }, [multiplier]);
+
+  useEffect(() => {
+    if(currentPrice) {
+      if (ButtonRef && ButtonRef.current) {
+        window.scrollTo({
+          behavior: 'smooth',
+          top: ButtonRef.current.offsetTop
+        });
+      }
+    }
+  }, [currentPrice])
 
   const handleAccomodation = (value: number) => {
     setMultiplier(value);
@@ -184,115 +217,153 @@ const InteriorPage: NextPage = () => {
     )
   );
 
+  const handleBack = () => {
+    if (currentScreen === 'interior') {
+      router.push('/');
+    } else {
+      setIsSent(false);
+      setCurrentScreen('interior');
+    }
+  };
+
   return (
     <Container>
       <Head>
-        <title>{interior.title}</title>
+        <title>
+          {currentScreen === 'interior'
+            ? interior.title
+            : `${interior.title} - Reservation`}
+        </title>
         <meta name="description" content={`${interior.description}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Back onClick={() => router.push('/')}>
+      <Back onClick={handleBack}>
         <BsChevronCompactLeft />
         Back
       </Back>
-      <MainImage src={interior.image} />
-      <Title>{interior.title}</Title>
-      <Location>{interior.location}</Location>
 
-      <Description>{interior.description}</Description>
+      {currentScreen === 'interior' && (
+        <>
+          <MainImage src={interior.image} />
+          <Title>{interior.title}</Title>
+          <Location>{interior.location}</Location>
 
-      <FeaturesContainer>
-        <Feature>
-          <BsFillPersonFill size={30} style={{ marginRight: 10 }} />{' '}
-          <p>Sleeps {interior.capacity}</p>
-        </Feature>
-        {renderFeatures(interior.features)}
-      </FeaturesContainer>
+          <Description>{interior.description}</Description>
 
-      <AccomodationsContainer>
-        <AccomodationsHeading>
-          Select Preferred Accomodation
-        </AccomodationsHeading>
+          <FeaturesContainer>
+            <Feature>
+              <BsFillPersonFill size={30} style={{ marginRight: 10 }} />{' '}
+              <p>Sleeps {interior.capacity}</p>
+            </Feature>
+            {renderFeatures(interior.features)}
+          </FeaturesContainer>
 
-        <AccomodationElement
-          selected={multiplier === 1}
-          onClick={() => handleAccomodation(1)}
-        >
-          <Accomodation>
-            <BsStar size={30} style={{ marginRight: 10 }} />
-            <AccomodationTitle>Simple</AccomodationTitle>
-          </Accomodation>
-          <AccomodationDescription>
-            <li>No additional benefits</li>
-          </AccomodationDescription>
-        </AccomodationElement>
+          <AccomodationsContainer>
+            <AccomodationsHeading>
+              Select Preferred Accomodation
+            </AccomodationsHeading>
 
-        <AccomodationElement
-          selected={multiplier === 1.5}
-          onClick={() => handleAccomodation(1.5)}
-        >
-          <Accomodation>
-            <BsStarHalf size={30} style={{ marginRight: 10 }} />
-            <AccomodationTitle>Regular</AccomodationTitle>
-          </Accomodation>
-          <AccomodationDescription>
-            {interior.tiers.regular.map((el, idx) => (
-              <li key={idx}>{el}</li>
-            ))}
-          </AccomodationDescription>
-        </AccomodationElement>
+            <AccomodationElement
+              selected={multiplier === 1}
+              onClick={() => handleAccomodation(1)}
+            >
+              <Accomodation>
+                <BsStar size={30} style={{ marginRight: 10 }} />
+                <AccomodationTitle>Simple</AccomodationTitle>
+              </Accomodation>
+              <AccomodationDescription>
+                <li>No additional benefits</li>
+              </AccomodationDescription>
+            </AccomodationElement>
 
-        <AccomodationElement
-          selected={multiplier === 2}
-          onClick={() => handleAccomodation(2)}
-        >
-          <Accomodation>
-            <BsStarFill size={30} style={{ marginRight: 10 }} />
-            <AccomodationTitle>Luxury</AccomodationTitle>
-          </Accomodation>
-          <AccomodationDescription>
-            {interior.tiers.luxury.map((el, idx) => (
-              <li key={idx}>{el}</li>
-            ))}
-          </AccomodationDescription>
-        </AccomodationElement>
-      </AccomodationsContainer>
+            <AccomodationElement
+              selected={multiplier === 1.5}
+              onClick={() => handleAccomodation(1.5)}
+            >
+              <Accomodation>
+                <BsStarHalf size={30} style={{ marginRight: 10 }} />
+                <AccomodationTitle>Regular</AccomodationTitle>
+              </Accomodation>
+              <AccomodationDescription>
+                {interior.tiers.regular.map((el, idx) => (
+                  <li key={idx}>{el}</li>
+                ))}
+              </AccomodationDescription>
+            </AccomodationElement>
 
-      <SelectContainer>
-        <GuestNumberContainer>
-          <div style={{ fontWeight: 'bold' }}>Guests</div>
-          <GuestNumber>{guestsNumber}</GuestNumber>
-          <ArrowsContainer>
-            <MdKeyboardArrowUp size={20} onClick={() => handleGuest('up')} />
-            <MdKeyboardArrowDown
-              size={20}
-              onClick={() => handleGuest('down')}
+            <AccomodationElement
+              selected={multiplier === 2}
+              onClick={() => handleAccomodation(2)}
+            >
+              <Accomodation>
+                <BsStarFill size={30} style={{ marginRight: 10 }} />
+                <AccomodationTitle>Luxury</AccomodationTitle>
+              </Accomodation>
+              <AccomodationDescription>
+                {interior.tiers.luxury.map((el, idx) => (
+                  <li key={idx}>{el}</li>
+                ))}
+              </AccomodationDescription>
+            </AccomodationElement>
+          </AccomodationsContainer>
+
+          <SelectContainer>
+            <GuestNumberContainer>
+              <div style={{ fontWeight: 'bold' }}>Guests</div>
+              <GuestNumber>{guestsNumber}</GuestNumber>
+              <ArrowsContainer>
+                <MdKeyboardArrowUp
+                  size={20}
+                  onClick={() => handleGuest('up')}
+                />
+                <MdKeyboardArrowDown
+                  size={20}
+                  onClick={() => handleGuest('down')}
+                />
+              </ArrowsContainer>
+            </GuestNumberContainer>
+
+            <DatePicker
+              selected={startDate}
+              onChange={handleCalendar}
+              startDate={startDate}
+              endDate={endDate}
+              selectsRange
+              minDate={new Date()}
+              dateFormat="dd/MM/yyyy"
+              withPortal
+              customInput={<CustomDatePickerButton />}
             />
-          </ArrowsContainer>
-        </GuestNumberContainer>
+          </SelectContainer>
 
-        <DatePicker
-          selected={startDate}
-          onChange={handleCalendar}
-          startDate={startDate}
-          endDate={endDate}
-          selectsRange
-          minDate={new Date()}
-          dateFormat="dd/MM/yyyy"
-          withPortal
-          customInput={<CustomDatePickerButton />}
-        />
-      </SelectContainer>
+          {currentPrice ? (
+            <Price>
+              <PriceTitle>Your Price: ${currentPrice}</PriceTitle>
+            </Price>
+          ) : (
+            <Error>Please select proper date of stay</Error>
+          )}
 
-      {currentPrice ? (
-        <Price>
-          <PriceTitle>Your Price: ${currentPrice}</PriceTitle>
-        </Price>
-      ) : (
-        <Error>Please select proper date of stay</Error>
+          {currentPrice && (
+            <ReserveButton ref={ButtonRef} onClick={() => setCurrentScreen('reserve')}>
+              Reserve
+            </ReserveButton>
+          )}
+        </>
       )}
 
-      {currentPrice && <ReserveButton>Reserve</ReserveButton>}
+      {currentScreen === 'reserve' && (
+        <Reserve
+          interior={interior}
+          guestsNumber={guestsNumber}
+          startDate={startDate}
+          endDate={endDate}
+          currentPrice={currentPrice}
+          currentAccomodationType={currentAccomodationType}
+          formIsSent={formIsSent}
+          setIsSent={setIsSent}
+        />
+      )}
     </Container>
   );
 };

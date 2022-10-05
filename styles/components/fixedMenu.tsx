@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import theme from '../theme';
 import devices from '../mediaQuery';
 
-export const Container = styled.div`
+export const Container = styled.div<{isPastLanding: boolean}>`
   width: calc(100% - 40px);
   height: 50px;
   position: fixed;
@@ -11,7 +11,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  color: white;
+  color: ${({isPastLanding}) => isPastLanding ? 'black' : 'white'};
   z-index: 6;
 `;
 
