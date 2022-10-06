@@ -7,6 +7,7 @@ import { Back, Landing, Title } from '../styles/components/conservation';
 
 import sectionConservationData from '../assets/sectionConservationData';
 import SectionConservation from '../components/SectionConservation';
+import Image from 'next/image';
 
 const Conservation: NextPage = () => {
   const router = useRouter();
@@ -26,6 +27,12 @@ const Conservation: NextPage = () => {
       </Back>
 
       <Landing>
+        <Image
+          src={'/images/conservation/landing.jpg'}
+          alt="Landing"
+          layout="fill"
+          objectFit="cover"
+        />
         <Title>Conservation</Title>
       </Landing>
 

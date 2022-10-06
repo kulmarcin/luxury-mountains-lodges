@@ -7,6 +7,7 @@ import { BsChevronCompactLeft } from 'react-icons/bs';
 
 import sectionDataAbout from '../assets/sectionAboutData';
 import SectionAbout from '../components/SectionAbout';
+import Image from 'next/image';
 
 const About: NextPage = () => {
   const router = useRouter();
@@ -24,6 +25,7 @@ const About: NextPage = () => {
       </Back>
 
       <Landing>
+        <Image src={'/images/about/landing.jpg'} layout="fill" alt="about" objectFit='cover' objectPosition={'0% 70%'}/>
         <Title>About</Title>
       </Landing>
 

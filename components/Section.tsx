@@ -1,14 +1,15 @@
 import { NextRouter } from 'next/router';
 import React from 'react';
+import Image from 'next/image';
 
 import {
   MainText,
   Description,
   Button,
   TextContainer,
-  Image,
   ImageContainer,
-  Container
+  Container,
+  ImageAlignContainer
 } from '../styles/components/section';
 
 interface Props {
@@ -18,7 +19,7 @@ interface Props {
   align: string;
   isStory?: boolean;
   order: number;
-  router: NextRouter
+  router: NextRouter;
 }
 
 export default function Section({
@@ -36,12 +37,23 @@ export default function Section({
         <MainText>{mainText}</MainText>
         <Description>{description}</Description>
 
-        {isStory && <Button onClick={() => router.push('/about')}>Our Story</Button>}
+        {isStory && (
+          <Button onClick={() => router.push('/about')}>Our Story</Button>
+        )}
       </TextContainer>
 
-      <ImageContainer align={align} order={order}>
-        <Image src={image} alt="section1 image" />
-      </ImageContainer>
+      <ImageAlignContainer align={align} order={order}>
+        <ImageContainer>
+          <Image
+            src={image}
+            alt="section image"
+            width={750}
+            height={750}
+            objectFit="cover"
+            objectPosition={'left'}
+          />
+        </ImageContainer>
+      </ImageAlignContainer>
     </Container>
   );
 }

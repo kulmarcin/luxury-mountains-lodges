@@ -68,22 +68,20 @@ export const Button = styled.div`
   }
 `;
 
-export const ImageContainer = styled.div<ImageContainerProps>`
+export const ImageAlignContainer = styled.div<ImageContainerProps>`
+  width: 100%;
   display: flex;
   justify-content: ${({ align }) => align};
-  margin-bottom: 0;
 
   @media ${devices.desktop} {
     order: ${({ order }) => order};
   }
-`;
-
-export const Image = styled.img`
+`
+export const ImageContainer = styled.div`
+  margin-top: 20px;
+  margin-bottom: 0;
   width: 370px;
   height: 400px;
-  object-fit: cover;
-  object-position: left;
-  margin-top: 20px;
 
   @media ${devices.tablet} {
     width: 750px;

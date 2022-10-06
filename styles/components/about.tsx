@@ -7,6 +7,7 @@ export const Back = styled.div`
   position: fixed;
   top: 10px;
   left: 10px;
+  z-index: 3;
 
   display: flex;
   align-items: center;
@@ -22,14 +23,13 @@ export const Back = styled.div`
 export const Landing = styled.div`
   width: 100vw;
   height: 100vh;
-  background: url('/images/about/landing.jpg');
-  background-size: cover;
-  background-position: 0% 70%;
-
+  position: relative;
   ${mixins.flexCenter}
 `;
 
 export const Title = styled.p`
+  position: relative;
+  z-index: 2;
   font-size: ${theme.fontSizes.xxl};
   color: white;
   font-family: ${theme.fonts.bold};

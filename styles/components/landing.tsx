@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import mixins from '../mixins';
 import theme from '../theme';
-import devices from '../mediaQuery'
+import devices from '../mediaQuery';
 
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
@@ -19,20 +19,19 @@ const jumping = keyframes`
 export const Landing = styled.div`
   width: 100vw;
   height: 100vh;
-  background: url('/images/mainPage.jpg');
-  background-size: cover;
-  background-position: center;
-
+  position: relative;
   ${mixins.flexCenter}
 `;
 
 export const Title = styled.p`
+  position: relative;
+  z-index: 2;
   font-size: ${theme.fontSizes.xl};
   color: white;
   font-family: ${theme.fonts.bold};
 
   @media ${devices.tablet} {
-    font-size:  ${theme.fontSizes.xxl}
+    font-size: ${theme.fontSizes.xxl};
   }
 `;
 

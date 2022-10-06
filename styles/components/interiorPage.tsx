@@ -13,10 +13,11 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const MainImage = styled.img`
+export const ImageContainer = styled.div`
   width: 100vw;
   height: 600px;
-  object-fit: cover;
+  display: flex;
+  justify-content: center;
 `;
 
 export const Title = styled.p`
@@ -41,6 +42,7 @@ export const Back = styled.div`
   position: fixed;
   top: 10px;
   left: 10px;
+  z-index: 3;
 
   display: flex;
   align-items: center;

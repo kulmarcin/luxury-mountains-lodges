@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { NextRouter } from 'next/router';
 import React from 'react';
 
@@ -6,7 +7,7 @@ import {
   Description,
   Button,
   TextContainer,
-  Image,
+  ImageAlignContainer,
   ImageContainer,
   Container
 } from '../styles/components/section';
@@ -18,7 +19,7 @@ interface Props {
   align: string;
   isButton: boolean;
   order: number;
-  router: NextRouter
+  router: NextRouter;
 }
 
 export default function SectionAbout({
@@ -36,12 +37,22 @@ export default function SectionAbout({
         <MainText>{mainText}</MainText>
         <Description>{description}</Description>
 
-        {isButton && <Button onClick={() => router.push('/interior')}>Our Lodges</Button>}
+        {isButton && (
+          <Button onClick={() => router.push('/interior')}>Our Lodges</Button>
+        )}
       </TextContainer>
-
-      <ImageContainer align={align} order={order}>
-        <Image src={image} alt="section about image" />
-      </ImageContainer>
+      <ImageAlignContainer align={align} order={order}>
+        <ImageContainer>
+          <Image
+            src={image}
+            alt="section about image"
+            width={750}
+            height={750}
+            objectFit="cover"
+            objectPosition={'left'}
+          />
+        </ImageContainer>
+      </ImageAlignContainer>
     </Container>
   );
 }
