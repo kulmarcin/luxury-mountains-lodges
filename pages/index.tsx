@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
@@ -10,28 +9,9 @@ import Slider from '../components/Slider';
 import Interiors from '../components/Interiors';
 import FixedMenu from '../components/FixedMenu';
 import { useRouter } from 'next/router';
-import Loader from '../components/Loader';
 
 const Home: NextPage = () => {
   const router = useRouter();
-
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
-
-  useEffect(() => {
-    if (isLoading) {
-      document.body.style.overflowY = 'hidden';
-    } else {
-      setTimeout(() => {
-        document.body.style.overflowY = 'scroll';
-      }, 1000);
-    }
-  }, [isLoading]);
 
   return (
     <div>
@@ -42,8 +22,6 @@ const Home: NextPage = () => {
       </Head>
 
       <FixedMenu router={router} />
-
-      <Loader loading={isLoading} />
 
       <Landing id="Landing">
         <Title>Place of Miracles</Title>
