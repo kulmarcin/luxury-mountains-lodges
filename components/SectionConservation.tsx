@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { NextRouter } from 'next/router';
 import React from 'react';
 
@@ -7,10 +8,10 @@ import {
   Button,
   TextContainer,
   ImageContainer,
+  ImageAlignContainer,
   Container
 } from '../styles/components/section';
 
-import { Image } from '../styles/components/conservation';
 
 interface Props {
   mainText: string;
@@ -39,10 +40,18 @@ export default function SectionAbout({
 
         {/* {isButton && <Button onClick={() => router.push('/interior')}>Our Lodges</Button>} */}
       </TextContainer>
-
-      <ImageContainer align={align} order={order}>
-        <Image src={image} alt="section conservation image" />
-      </ImageContainer>
+      <ImageAlignContainer align={align} order={order}>
+        <ImageContainer>
+          <Image
+            src={image}
+            alt="section conservation image"
+            width={750}
+            height={750}
+            objectFit="cover"
+            objectPosition={'left'}
+          />
+        </ImageContainer>
+      </ImageAlignContainer>
     </Container>
   );
 }

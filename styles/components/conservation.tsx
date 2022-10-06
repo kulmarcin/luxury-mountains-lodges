@@ -7,6 +7,7 @@ export const Back = styled.div`
   position: fixed;
   top: 10px;
   left: 10px;
+  z-index: 3;
 
   display: flex;
   align-items: center;
@@ -22,28 +23,14 @@ export const Back = styled.div`
 export const Landing = styled.div`
   width: 100vw;
   height: 100vh;
-  background: url('/images/conservation/landing.jpg');
-  background-size: cover;
-  background-position: 0% 70%;
-
+  position: relative;
   ${mixins.flexCenter}
 `;
 
 export const Title = styled.p`
+  position: relative;
+  z-index: 2;
   font-size: 60px;
   color: white;
   font-family: ${theme.fonts.bold};
-`;
-
-export const Image = styled.img`
-  width: 370px;
-  height: 400px;
-  object-fit: cover;
-  object-position: center;
-  margin-top: 20px;
-
-  @media ${devices.tablet} {
-    width: 750px;
-    height: 750px;
-  }
 `;

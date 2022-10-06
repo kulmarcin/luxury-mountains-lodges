@@ -21,13 +21,13 @@ import {
   GuestNumber,
   GuestNumberContainer,
   Location,
-  MainImage,
   Price,
   PriceTitle,
   SelectContainer,
   Title,
   Error,
-  ReserveButton
+  ReserveButton,
+  ImageContainer
 } from '../../styles/components/interiorPage';
 import { BsChevronCompactLeft } from 'react-icons/bs';
 
@@ -50,6 +50,7 @@ import {
 } from 'react-icons/bs';
 import Head from 'next/head';
 import Reserve from '../../components/Reserve';
+import Image from 'next/image';
 
 export interface Interior {
   id: number;
@@ -86,7 +87,6 @@ const InteriorPage: NextPage = () => {
 
   const ButtonRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
-
   useEffect(() => {
     if (!endDate) setCurrentPrice(null);
     if (startDate && endDate && interior) {
@@ -117,7 +117,7 @@ const InteriorPage: NextPage = () => {
   }, [multiplier]);
 
   useEffect(() => {
-    if(currentPrice) {
+    if (currentPrice) {
       if (ButtonRef && ButtonRef.current) {
         window.scrollTo({
           behavior: 'smooth',
@@ -125,7 +125,7 @@ const InteriorPage: NextPage = () => {
         });
       }
     }
-  }, [currentPrice])
+  }, [currentPrice]);
 
   const handleAccomodation = (value: number) => {
     setMultiplier(value);
@@ -244,7 +244,15 @@ const InteriorPage: NextPage = () => {
 
       {currentScreen === 'interior' && (
         <>
-          <MainImage src={interior.image} />
+          <ImageContainer>
+            <Image
+              src={interior.image}
+              alt="interior image"
+              width={1100}
+              height={600}
+              objectFit={'cover'}
+            />
+          </ImageContainer>
           <Title>{interior.title}</Title>
           <Location>{interior.location}</Location>
 
@@ -345,7 +353,10 @@ const InteriorPage: NextPage = () => {
           )}
 
           {currentPrice && (
-            <ReserveButton ref={ButtonRef} onClick={() => setCurrentScreen('reserve')}>
+            <ReserveButton
+              ref={ButtonRef}
+              onClick={() => setCurrentScreen('reserve')}
+            >
               Reserve
             </ReserveButton>
           )}

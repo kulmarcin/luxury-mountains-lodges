@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
 
 import sectionData from '../assets/sectionData';
 
@@ -24,6 +25,7 @@ const Home: NextPage = () => {
       <FixedMenu router={router} />
 
       <Landing id="Landing">
+        <Image src={'/images/mainPage.jpg'} alt="Landing" layout="fill" objectFit='cover'/>
         <Title>Place of Miracles</Title>
         <StyledArrowDown size={64} />
       </Landing>

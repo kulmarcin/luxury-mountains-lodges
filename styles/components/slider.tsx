@@ -46,7 +46,7 @@ export const MainText = styled.p`
   }
 `;
 
-export const Image = styled.img<ImageProps>`
+export const ImageContainer = styled.div<ImageProps>`
   min-width: 270px;
   height: 270px;
   border-radius: 25px;

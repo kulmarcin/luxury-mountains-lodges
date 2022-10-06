@@ -49,12 +49,6 @@ export const ImageContainer = styled.div`
   margin-top: 40px;
 `;
 
-export const Image = styled.img`
-  width: 360px;
-  height: 400px;
-  object-fit: cover;
-`;
-
 export const Location = styled.p`
   font-size: ${theme.fontSizes.base};
   font-family: ${theme.fonts.light};
