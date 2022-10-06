@@ -9,16 +9,19 @@ const GlobalStyle = createGlobalStyle`
     @font-face {
         font-family: Spectral;
         src: url('/fonts/Spectral-Regular.ttf');
+        font-display: fallback;
     }
 
     @font-face {
         font-family: Spectral Bold;
         src: url('/fonts/Spectral-SemiBold.ttf');
+        font-display: fallback;
     }
 
     @font-face {
         font-family: Spectral Light;
         src: url('/fonts/Spectral-ExtraLight.ttf');
+        font-display: fallback;
     }
 
     html {
