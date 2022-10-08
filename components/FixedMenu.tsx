@@ -33,6 +33,8 @@ import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import interiorsData from '../assets/interiorsData';
 import { NextRouter } from 'next/router';
 
+import { GiMountainRoad } from 'react-icons/gi';
+
 interface Props {
   router: NextRouter;
 }
@@ -40,7 +42,7 @@ interface Props {
 export default function FixedMenu({ router }: Props) {
   const [isMenu, setIsMenu] = useState(false);
   const [currentMenu, setCurrentMenu] = useState('main');
-  const [isPastLanding, setIsPastLanding] = useState(false)
+  const [isPastLanding, setIsPastLanding] = useState(false);
 
   const handleRouter = (value: string) => {
     setIsMenu(false);
@@ -96,13 +98,13 @@ export default function FixedMenu({ router }: Props) {
   }, [isMenu]);
 
   useEffect(() => {
-    const viewportHeight = window.innerHeight
+    const viewportHeight = window.innerHeight;
 
     const checkScrollY = () => {
-      if(window.scrollY > viewportHeight) {
-        setIsPastLanding(true)
+      if (window.scrollY > viewportHeight) {
+        setIsPastLanding(true);
       } else {
-        setIsPastLanding(false)
+        setIsPastLanding(false);
       }
     };
 
@@ -121,7 +123,9 @@ export default function FixedMenu({ router }: Props) {
   return (
     <>
       <Container isPastLanding={isPastLanding}>
-        LOGO
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <GiMountainRoad size={30} /> Luxure Lodges
+        </div>
         {isMenu ? (
           <ButtonContainer onClick={() => setIsMenu(!isMenu)}>
             Close
@@ -139,7 +143,12 @@ export default function FixedMenu({ router }: Props) {
           <>
             <Main>
               {mainMenu.map((el, idx) => (
-                <MainElement key={idx} onClick={el.method && el.method}>
+                <MainElement
+                  key={idx}
+                  index={idx}
+                  onClick={el.method && el.method}
+                  className={isMenu ? 'active' : ''}
+                >
                   {el.name} <BsChevronCompactRight />
                 </MainElement>
               ))}
@@ -148,20 +157,32 @@ export default function FixedMenu({ router }: Props) {
             <LowerMenu>
               <Left>
                 {lowerLeftMenu.map((el, idx) => (
-                  <LowerLeftElement key={idx}>{el}</LowerLeftElement>
+                  <LowerLeftElement
+                    key={idx}
+                    index={idx}
+                    className={isMenu ? 'active' : ''}
+                  >
+                    {el}
+                  </LowerLeftElement>
                 ))}
 
-                <Contact>
+                <Contact className={isMenu ? 'active' : ''}>
                   <EmailTel>enquiries@company.com</EmailTel>
                   <EmailTel>+27 (0) 21 777 7272</EmailTel>
                 </Contact>
 
-                <Socials>{socials.map(el => el)}</Socials>
+                <Socials className={isMenu ? 'active' : ''}>
+                  {socials.map(el => el)}
+                </Socials>
               </Left>
 
               <Right>
                 {lowerRightMenu.map((el, idx) => (
-                  <LowerRightElement key={idx}>
+                  <LowerRightElement
+                    key={idx}
+                    index={idx}
+                    className={isMenu ? 'active' : ''}
+                  >
                     {el.icon} <div>{el.name}</div>
                   </LowerRightElement>
                 ))}
@@ -180,8 +201,10 @@ export default function FixedMenu({ router }: Props) {
             <LodgesContainer>
               {interiorsData.map((el, idx) => (
                 <LodgeElement
+                  className={isMenu ? 'active' : ''}
                   key={idx}
                   onClick={() => handleLodgeElement(el.id)}
+                  index={idx}
                 >
                   {el.title} <BsChevronCompactRight size={40} />
                 </LodgeElement>

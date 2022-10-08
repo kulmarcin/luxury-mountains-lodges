@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import devices from '../mediaQuery';
 import mixins from '../mixins';
 import theme from '../theme';
@@ -7,10 +7,19 @@ interface AccomodationProps {
   selected: boolean;
 }
 
+const onStart = keyframes`
+    0% {
+      opacity: 0;
+    } 100% {
+      opacity:1;
+    }
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: ${onStart} 1s ease-out forwards;
 `;
 
 export const ImageContainer = styled.div`
@@ -95,8 +104,11 @@ export const AccomodationElement = styled.div<AccomodationProps>`
   margin-top: 20px;
   padding: 10px;
   outline: ${({ selected }) =>
-    selected ? `1px solid ${theme.colors.brown}` : 'none'};
+    selected ? `1px solid ${theme.colors.brown}` : '1px solid transparent'};
+  border-radius: 16px;
+  background-color: ${({selected}) => selected ? 'rgba(255,255,255, 0.5)' : 'transparent'};
   cursor: pointer;
+  transition: outline 0.5s ease-out, background-color 1s ease-out;
 `;
 export const AccomodationTitle = styled.p`
   font-family: ${theme.fonts.bold};

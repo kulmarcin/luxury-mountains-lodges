@@ -1,5 +1,5 @@
 import { NextRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 
 import {
@@ -9,7 +9,8 @@ import {
   TextContainer,
   ImageContainer,
   Container,
-  ImageAlignContainer
+  ImageAlignContainer,
+  StickyContainer
 } from '../styles/components/section';
 
 interface Props {
@@ -22,6 +23,22 @@ interface Props {
   router: NextRouter;
 }
 
+function moveImage() {
+  const images = document.querySelectorAll(
+    '.sectionImage'
+  ) as NodeListOf<HTMLImageElement>;
+
+  images.forEach(el => {
+    const elementPosition = el.getBoundingClientRect().top;
+
+    if (elementPosition < 0 && elementPosition > -200) {
+      el.style.transform = `translateY(${-elementPosition / 2}px)`;
+    } else if (elementPosition < -200) {
+      el.style.transform = `translateY(100px)`;
+    }
+  });
+}
+
 export default function Section({
   mainText,
   description,
@@ -31,20 +48,31 @@ export default function Section({
   order,
   router
 }: Props) {
-  return (
-    <Container>
-      <TextContainer>
-        <MainText>{mainText}</MainText>
-        <Description>{description}</Description>
+  useEffect(() => {
+    window.addEventListener('scroll', moveImage);
 
-        {isStory && (
-          <Button onClick={() => router.push('/about')}>Our Story</Button>
-        )}
+    return () => {
+      window.removeEventListener('scroll', moveImage);
+    };
+  }, []);
+
+  return (
+    <Container className='section'>
+      <TextContainer>
+        <StickyContainer>
+          <MainText>{mainText}</MainText>
+          <Description>{description}</Description>
+
+          {isStory && (
+            <Button onClick={() => router.push('/about')}>Our Story</Button>
+          )}
+        </StickyContainer>
       </TextContainer>
 
       <ImageAlignContainer align={align} order={order}>
         <ImageContainer>
           <Image
+            className="sectionImage"
             src={image}
             alt="section image"
             width={750}

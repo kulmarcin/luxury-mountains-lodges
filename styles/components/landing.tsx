@@ -16,6 +16,19 @@ const jumping = keyframes`
     }
 `;
 
+const onStart = keyframes`
+    0% {
+      opacity: 0;
+    } 100% {
+      opacity:1;
+    }
+`;
+
+export const MainContainer = styled.div`
+    animation: ${onStart} 1s ease-out forwards;
+
+`;
+
 export const Landing = styled.div`
   width: 100vw;
   height: 100vh;

@@ -1,7 +1,20 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import devices from '../mediaQuery';
 import mixins from '../mixins';
 import theme from '../theme';
+
+const onStart = keyframes`
+    0% {
+      opacity: 0;
+    } 100% {
+      opacity:1;
+    }
+`;
+
+export const MainContainer = styled.div`
+    animation: ${onStart} 1s ease-out forwards;
+`;
+
 
 export const Back = styled.div`
   position: fixed;
