@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import Interiors from '../../components/Interiors';
 
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import theme from '../../styles/theme';
 
 import { BsChevronCompactLeft } from 'react-icons/bs';
@@ -24,16 +24,28 @@ export const Back = styled.div`
   cursor: pointer;
 `;
 
+const onStart = keyframes`
+    0% {
+      opacity: 0;
+    } 100% {
+      opacity:1;
+    }
+`;
+
+const MainContainer = styled.div`
+    animation: ${onStart} 1s ease-out forwards;
+`;
+
 const AllInteriors: NextPage = () => {
   const router = useRouter();
 
   return (
-    <>
+    <MainContainer>
       <Back onClick={() => router.push('/')}>
         <BsChevronCompactLeft /> Back
       </Back>
-      <Interiors />
-    </>
+      <Interiors interiorPage={true}/>
+    </MainContainer>
   );
 };
 

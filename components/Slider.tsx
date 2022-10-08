@@ -6,7 +6,8 @@ import {
   ImageContainer,
   ButtonRight,
   MainText,
-  Description
+  Description,
+  MainContainer
 } from '../styles/components/slider';
 
 import sliderData from '../assets/sliderData';
@@ -24,7 +25,7 @@ export default function Slider() {
   };
 
   return (
-    <>
+    <MainContainer className="section">
       <MainText>Conservation. Our passion, our purpose.</MainText>
       <SliderContainer>
         {sliderData.map((el, idx) => (
@@ -36,8 +37,7 @@ export default function Slider() {
             <Image
               src={el.image}
               alt={el.alt}
-              width={900}
-              height={500}
+              layout="fill"
               objectFit="cover"
             />
           </ImageContainer>
@@ -52,6 +52,6 @@ export default function Slider() {
       </SliderContainer>
 
       <Description>{sliderData[index].description}</Description>
-    </>
+    </MainContainer>
   );
 }

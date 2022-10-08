@@ -2,9 +2,20 @@ import styled from 'styled-components';
 import theme from '../theme';
 import devices from '../mediaQuery';
 
-export const Container = styled.div`
+export const Container = styled.div<{interiorPage: boolean | undefined}>`
   padding: ${theme.spacing.base};
   margin-top: 30px;
+
+  opacity: ${({interiorPage}) => interiorPage ? 1 : 0};
+  transform: ${({interiorPage}) => interiorPage ? 'initial' : 'translateX(-100px)'};
+  filter: ${({interiorPage}) => interiorPage ? 'initial' : 'blur(5px)'};
+  transition: all 1s;
+
+  &.show {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
 `;
 
 export const MainText = styled.p`
@@ -47,6 +58,12 @@ export const ImageContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-top: 40px;
+
+  &:hover {
+    & .lodgeTitle {
+      border-bottom: 1px solid black;
+    }
+  }
 `;
 
 export const Location = styled.p`
@@ -61,6 +78,10 @@ export const Location = styled.p`
 
 export const Title = styled.p`
   font-size: ${theme.fontSizes.md};
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.6s ease-out;
+  height: 44px;
+
 
   @media ${devices.tablet} {
     font-size: ${theme.fontSizes.lg};

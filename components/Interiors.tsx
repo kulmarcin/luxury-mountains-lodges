@@ -14,10 +14,14 @@ import interiorsData from '../assets/interiorsData';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-export default function Interiors() {
+interface Props {
+  interiorPage?: boolean;
+}
+
+export default function Interiors({interiorPage} : Props) {
   const router = useRouter();
   return (
-    <Container>
+    <Container className="section" interiorPage={interiorPage}>
       <MainText>A soul-restoring experience. Find your sanctuary.</MainText>
       <Description>
         Featuring unfiltered space & time, award-winning lodges offer remote
@@ -40,7 +44,7 @@ export default function Interiors() {
               objectFit="cover"
             />
             <Location>{el.location}</Location>
-            <Title>{el.title}</Title>
+            <Title className='lodgeTitle'>{el.title}</Title>
           </ImageContainer>
         ))}
       </InteriorsContainer>

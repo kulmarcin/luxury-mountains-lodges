@@ -1,8 +1,26 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import theme from '../theme';
 import devices from '../mediaQuery';
 
-export const Container = styled.div<{isPastLanding: boolean}>`
+const elementAnimation = keyframes`
+  0% {
+    opacity:0;
+    transform: translateX(-300px);
+  } 100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const showUp = keyframes`
+  0% {
+    opacity: 0;
+  } 100% {
+    opacity: 1;
+  }
+`;
+
+export const Container = styled.div<{ isPastLanding: boolean }>`
   width: calc(100% - 40px);
   height: 50px;
   position: fixed;
@@ -11,7 +29,7 @@ export const Container = styled.div<{isPastLanding: boolean}>`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  color: ${({isPastLanding}) => isPastLanding ? 'black' : 'white'};
+  color: ${({ isPastLanding }) => (isPastLanding ? 'black' : 'white')};
   z-index: 6;
 `;
 
@@ -60,12 +78,19 @@ export const Main = styled.div`
   }
 `;
 
-export const MainElement = styled.div`
+export const MainElement = styled.div<{ index: number }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
   cursor: pointer;
+
+  &.active {
+    opacity: 0;
+    transform: translateX(-300px);
+    animation: ${elementAnimation} 1s ease-out forwards;
+    animation-delay: ${({ index }) => `${300 + index * 200}ms`};
+  }
 
   @media ${devices.desktop} {
     & svg {
@@ -120,10 +145,17 @@ export const Left = styled.div`
 
 export const Right = styled(Left)``;
 
-export const LowerLeftElement = styled.div`
+export const LowerLeftElement = styled.div<{ index: number }>`
   font-family: ${theme.fonts.bold};
   margin-top: 20px;
   cursor: pointer;
+
+  &.active {
+    opacity: 0;
+    transform: translateX(-300px);
+    animation: ${elementAnimation} 1s ease-out forwards;
+    animation-delay: ${({ index }) => `${300 + index * 200}ms`};
+  }
 
   @media ${devices.desktop} {
     transition: border 0.3s;
@@ -134,12 +166,19 @@ export const LowerLeftElement = styled.div`
   }
 `;
 
-export const LowerRightElement = styled.div`
+export const LowerRightElement = styled.div<{ index: number }>`
   font-family: ${theme.fonts.light};
   margin-top: 20px;
   display: flex;
   align-items: center;
   cursor: pointer;
+
+  &.active {
+    opacity: 0;
+    transform: translateX(-300px);
+    animation: ${elementAnimation} 1s ease-out forwards;
+    animation-delay: ${({ index }) => `${300 + index * 200}ms`};
+  }
 
   @media ${devices.desktop} {
     & div {
@@ -159,6 +198,12 @@ export const Contact = styled.div`
   display: flex;
   flex-direction: column;
 
+  &.active {
+    opacity: 0;
+    animation: ${showUp} 1s ease-out forwards;
+    animation-delay: 2.5s;
+  }
+
   @media ${devices.desktop} {
     position: absolute;
     bottom: 20px;
@@ -175,6 +220,12 @@ export const Socials = styled.div`
   align-items: center;
   padding-bottom: 20px;
   margin-top: 40px;
+
+  &.active {
+    opacity: 0;
+    animation: ${showUp} 1s ease-out forwards;
+    animation-delay: 2.5s;
+  }
 
   @media ${devices.desktop} {
     position: absolute;
@@ -215,12 +266,18 @@ export const LodgesContainer = styled.div`
   }
 `;
 
-export const LodgeElement = styled.div`
+export const LodgeElement = styled.div<{index: number}>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
   cursor: pointer;
+
+    opacity: 0;
+    transform: translateX(-300px);
+    animation: ${elementAnimation} 1s ease-out forwards;
+    animation-delay: ${({ index }) => `${index * 200}ms`};
+  
 
   @media ${devices.desktop} {
     & svg {

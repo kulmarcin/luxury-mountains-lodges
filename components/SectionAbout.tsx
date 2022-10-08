@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { NextRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
   MainText,
@@ -9,7 +9,8 @@ import {
   TextContainer,
   ImageAlignContainer,
   ImageContainer,
-  Container
+  Container,
+  StickyContainer
 } from '../styles/components/section';
 
 interface Props {
@@ -22,6 +23,22 @@ interface Props {
   router: NextRouter;
 }
 
+function moveImage() {
+  const images = document.querySelectorAll(
+    '.sectionAboutImage'
+  ) as NodeListOf<HTMLImageElement>;
+
+  images.forEach(el => {
+    const elementPosition = el.getBoundingClientRect().top;
+
+    if (elementPosition < 0 && elementPosition > -200) {
+      el.style.transform = `translateY(${-elementPosition / 2}px)`;
+    } else if (elementPosition < -200) {
+      el.style.transform = `translateY(100px)`;
+    }
+  });
+}
+
 export default function SectionAbout({
   mainText,
   description,
@@ -31,19 +48,30 @@ export default function SectionAbout({
   router,
   isButton
 }: Props) {
-  return (
-    <Container>
-      <TextContainer>
-        <MainText>{mainText}</MainText>
-        <Description>{description}</Description>
+  useEffect(() => {
+    window.addEventListener('scroll', moveImage);
 
-        {isButton && (
-          <Button onClick={() => router.push('/interior')}>Our Lodges</Button>
-        )}
+    return () => {
+      window.removeEventListener('scroll', moveImage);
+    };
+
+  }, []);
+  return (
+    <Container className="section">
+      <TextContainer>
+        <StickyContainer>
+          <MainText>{mainText}</MainText>
+          <Description>{description}</Description>
+
+          {isButton && (
+            <Button onClick={() => router.push('/interior')}>Our Lodges</Button>
+          )}
+        </StickyContainer>
       </TextContainer>
       <ImageAlignContainer align={align} order={order}>
         <ImageContainer>
           <Image
+            className="sectionAboutImage"
             src={image}
             alt="section about image"
             width={750}

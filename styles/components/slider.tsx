@@ -6,8 +6,21 @@ import devices from '../mediaQuery';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 interface ImageProps {
-  index: number
+  index: number;
 }
+
+export const MainContainer = styled.div`
+  opacity: 0;
+  transform: translateX(-200px);
+  filter: blur(5px);
+  transition: all 1s;
+
+  &.show {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+`;
 
 export const SliderContainer = styled.div`
   width: 100%;
@@ -47,6 +60,7 @@ export const MainText = styled.p`
 `;
 
 export const ImageContainer = styled.div<ImageProps>`
+  position: relative;
   min-width: 270px;
   height: 270px;
   border-radius: 25px;
@@ -58,7 +72,6 @@ export const ImageContainer = styled.div<ImageProps>`
 
   @media ${devices.tablet} {
     min-width: 500px;
-    max-width: 500px;
     height: 500px;
     transform: ${({ index }) => `translateX(-${index * 380}px)`};
   }

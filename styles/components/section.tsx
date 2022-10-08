@@ -11,6 +11,16 @@ interface ImageContainerProps {
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  transform: translateX(-200px);
+  filter: blur(5px);
+  transition: all 1s ease-out;
+
+  &.show {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0)
+  }
 
   @media ${devices.desktop} {
     flex-direction: row;
@@ -20,6 +30,11 @@ export const Container = styled.div`
 export const TextContainer = styled.div`
   padding: ${theme.spacing.md};
 `;
+
+export const StickyContainer = styled.div`
+  position: sticky;
+  top: 50px;
+`
 
 export const MainText = styled.p`
   font-size: ${theme.fontSizes.lg};
