@@ -123,7 +123,7 @@ export default function FixedMenu({ router }: Props) {
   return (
     <>
       <Container isPastLanding={isPastLanding}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', cursor: 'default' }}>
           <GiMountainRoad size={30} /> Luxure Lodges
         </div>
         {isMenu ? (

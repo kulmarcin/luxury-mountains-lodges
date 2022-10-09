@@ -221,7 +221,7 @@ export default function Reserve({
                 <option value="Prof.">Prof.</option>
               </StyledSelect>
               {submitError && form.title === ' ' && (
-                <ErrorMessage>Required Field</ErrorMessage>
+                <ErrorMessage>Required</ErrorMessage>
               )}
             </FormElement>
 
@@ -233,7 +233,7 @@ export default function Reserve({
                 onChange={e => handleForm(e, 'firstName')}
               />
               {submitError && form.firstName === '' && (
-                <ErrorMessage>Required Field</ErrorMessage>
+                <ErrorMessage>Required</ErrorMessage>
               )}
             </FormElement>
 
@@ -245,7 +245,7 @@ export default function Reserve({
                 onChange={e => handleForm(e, 'lastName')}
               />
               {submitError && form.lastName === '' && (
-                <ErrorMessage>Required Field</ErrorMessage>
+                <ErrorMessage>Required</ErrorMessage>
               )}
             </FormElement>
 
@@ -257,7 +257,7 @@ export default function Reserve({
                 onChange={e => handleForm(e, 'contactNumber')}
               />
               {submitError && form.contactNumber === '' && (
-                <ErrorMessage>Required Field</ErrorMessage>
+                <ErrorMessage>Required</ErrorMessage>
               )}
             </FormElement>
 
@@ -275,7 +275,7 @@ export default function Reserve({
                 ))}
               </StyledSelect>
               {submitError && form.country === ' ' && (
-                <ErrorMessage>Required Field</ErrorMessage>
+                <ErrorMessage>Required</ErrorMessage>
               )}
             </FormElement>
 
@@ -287,7 +287,7 @@ export default function Reserve({
                 onChange={e => handleForm(e, 'email')}
               />
               {submitError && form.email === '' ? (
-                <ErrorMessage>Required Field</ErrorMessage>
+                <ErrorMessage>Required</ErrorMessage>
               ) : (
                 submitError &&
                 !form.email.includes('@') && (
@@ -307,7 +307,7 @@ export default function Reserve({
                 <option value="Travel Partner">Travel Partner</option>
               </StyledSelect>
               {submitError && form.guestType === ' ' && (
-                <ErrorMessage>Required Field</ErrorMessage>
+                <ErrorMessage>Required</ErrorMessage>
               )}
             </FormElement>
 
@@ -326,13 +326,10 @@ export default function Reserve({
               </LabelCheckbox>
             </FormElement>
             <FormElement width={780}>
-              <LabelCheckbox>
+              <LabelCheckbox dataConsent={form.dataConsent} submitError={submitError}>
                 <StyledInputCheckbox type="checkbox" color='black' checked={form.dataConsent} onChange={() => handleRadio('dataConsent')}/>
                 I consent to my submitted data being collected and stored
               </LabelCheckbox>
-              {submitError && !form.dataConsent && (
-                <ErrorMessage>Required Field</ErrorMessage>
-              )}
             </FormElement>
 
             <ButtonContainer>
