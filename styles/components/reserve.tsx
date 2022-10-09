@@ -191,6 +191,7 @@ export const SubmitButton = styled.div`
 
 export const ErrorMessage = styled.p`
   color: red;
+  font-size: ${theme.fontSizes.xs}
 `;
 
 export const SuccessMessageContainer = styled.div`
@@ -258,8 +259,9 @@ export const StyledInputCheckbox = styled.input`
     }
 `;
 
-export const LabelCheckbox = styled.label`
+export const LabelCheckbox = styled.label<{dataConsent?: boolean; submitError?: boolean}>`
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    color: ${({dataConsent, submitError}) => !dataConsent && submitError ? 'red' : 'black'};
 `;

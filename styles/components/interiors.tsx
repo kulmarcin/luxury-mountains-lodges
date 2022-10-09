@@ -7,14 +7,10 @@ export const Container = styled.div<{interiorPage: boolean | undefined}>`
   margin-top: 30px;
 
   opacity: ${({interiorPage}) => interiorPage ? 1 : 0};
-  transform: ${({interiorPage}) => interiorPage ? 'initial' : 'translateX(-100px)'};
-  filter: ${({interiorPage}) => interiorPage ? 'initial' : 'blur(5px)'};
   transition: all 1s;
 
   &.show {
     opacity: 1;
-    transform: translateX(0);
-    filter: blur(0);
   }
 `;
 

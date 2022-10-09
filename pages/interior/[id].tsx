@@ -27,13 +27,16 @@ import {
   Title,
   Error,
   ReserveButton,
-  ImageContainer
+  ImageContainer,
+  ImageGallery,
+  ArrowLeft,
+  ArrowRight
 } from '../../styles/components/interiorPage';
 import { BsChevronCompactLeft } from 'react-icons/bs';
 
 import interiorsData from '../../assets/interiorsData';
 
-import { RiParkingBoxFill } from 'react-icons/ri';
+import { RiParkingBoxFill, RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 import { FaMountain, FaBath } from 'react-icons/fa';
 import {
   MdSmokeFree,
@@ -56,7 +59,7 @@ export interface Interior {
   id: number;
   title: string;
   location: string;
-  image: string;
+  images: string[];
   alt: string;
   description: string;
   features: string[];
@@ -84,6 +87,7 @@ const InteriorPage: NextPage = () => {
   const [currentPrice, setCurrentPrice] = useState<null | string>(null);
   const [currentScreen, setCurrentScreen] = useState('interior');
   const [formIsSent, setIsSent] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
 
   const ButtonRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
@@ -226,6 +230,22 @@ const InteriorPage: NextPage = () => {
     }
   };
 
+  const handleImageGallery = (direction: string) => {
+    if (direction === 'right') {
+      if (currentImage === interior!.images.length - 1) {
+        setCurrentImage(0);
+      } else {
+        setCurrentImage(state => state + 1);
+      }
+    } else {
+      if (currentImage === 0) {
+        setCurrentImage(interior!.images.length - 1);
+      } else {
+        setCurrentImage(state => state - 1);
+      }
+    }
+  };
+
   return (
     <Container>
       <Head>
@@ -244,15 +264,27 @@ const InteriorPage: NextPage = () => {
 
       {currentScreen === 'interior' && (
         <>
-          <ImageContainer>
-            <Image
-              src={interior.image}
-              alt="interior image"
-              width={1100}
-              height={600}
-              objectFit={'cover'}
-            />
-          </ImageContainer>
+          <ImageGallery>
+            <ArrowLeft size={30} onClick={() => handleImageGallery('left')}>
+            <RiArrowLeftSLine size={60} color={'white'}/>
+            </ArrowLeft>
+            <ArrowRight size={30} onClick={() => handleImageGallery('right')}>
+              <RiArrowRightSLine size={60} color={'white'}/>
+            </ArrowRight>
+            {interior.images.map((el, idx) => (
+              <ImageContainer
+                key={idx}
+                className={currentImage === idx ? 'active' : ''}
+              >
+                <Image
+                  src={el}
+                  alt="interior image"
+                  layout="fill"
+                  objectFit={'cover'}
+                />
+              </ImageContainer>
+            ))}
+          </ImageGallery>
           <Title>{interior.title}</Title>
           <Location>{interior.location}</Location>
 

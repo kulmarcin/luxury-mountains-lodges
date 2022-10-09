@@ -37,7 +37,7 @@ export default function Interiors({interiorPage} : Props) {
             onClick={() => router.push(`/interior/${el.id}`)}
           >
             <Image
-              src={el.image}
+              src={el.images[0]}
               alt={el.alt}
               width={360}
               height={400}

@@ -1,7 +1,9 @@
-import styled, {keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import devices from '../mediaQuery';
 import mixins from '../mixins';
 import theme from '../theme';
+
+import {MdKeyboardArrowLeft,MdKeyboardArrowRight} from 'react-icons/md'
 
 interface AccomodationProps {
   selected: boolean;
@@ -22,11 +24,60 @@ export const Container = styled.div`
   animation: ${onStart} 1s ease-out forwards;
 `;
 
-export const ImageContainer = styled.div`
-  width: 100vw;
+export const ImageGallery = styled.div`
+  position: relative;
+  width: 100%;
   height: 600px;
-  display: flex;
-  justify-content: center;
+`;
+
+// export const ArrowLeft = styled.div`
+//   position: absolute;
+//   top: 45%;
+//   left: 15px;
+//   z-index: 50;
+//   cursor: pointer;
+// `;
+
+// export const ArrowRight = styled.div`
+//   position: absolute;
+//   top: 45%;
+//   right: 15px;
+//   z-index: 50;
+//   cursor: pointer;
+// `;
+
+export const ArrowLeft = styled(MdKeyboardArrowLeft)`
+  position: absolute;
+  top: 300px;
+  left: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: ${theme.colors.beigeLowerOpacity};
+  border: 1px solid ${theme.colors.brown};
+  z-index: 50;
+`;
+
+export const ArrowRight = styled(MdKeyboardArrowRight)`
+  position: absolute;
+  top: 300px;
+  right: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: ${theme.colors.beigeLowerOpacity};
+  border: 1px solid ${theme.colors.brown};
+  z-index: 50;  
+`;
+
+export const ImageContainer = styled.div<{className: string | undefined}>`
+  position: absolute;
+  width: 100%;
+  height: 600px;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+
+  &.active {
+    opacity: 1;
+  }
 `;
 
 export const Title = styled.p`
@@ -106,7 +157,8 @@ export const AccomodationElement = styled.div<AccomodationProps>`
   outline: ${({ selected }) =>
     selected ? `1px solid ${theme.colors.brown}` : '1px solid transparent'};
   border-radius: 16px;
-  background-color: ${({selected}) => selected ? 'rgba(255,255,255, 0.5)' : 'transparent'};
+  background-color: ${({ selected }) =>
+    selected ? 'rgba(255,255,255, 0.5)' : 'transparent'};
   cursor: pointer;
   transition: outline 0.5s ease-out, background-color 1s ease-out;
 `;

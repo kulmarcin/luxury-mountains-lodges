@@ -12,14 +12,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   opacity: 0;
-  transform: translateX(-200px);
-  filter: blur(5px);
-  transition: all 1s ease-out;
+  transition: all 0.5s;
 
   &.show {
     opacity: 1;
-    transform: translateX(0);
-    filter: blur(0)
   }
 
   @media ${devices.desktop} {
